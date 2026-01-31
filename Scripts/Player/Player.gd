@@ -1,9 +1,11 @@
 extends CharacterBody2D
 
 # Reference to child nodes
-@onready var character_sprite: Sprite2D = $CharacterSprite
-@onready var character_animator: AnimationPlayer = $CharacterAnimator
+@onready var sprite: Sprite2D = $CharacterSprite
+@onready var animator: AnimationPlayer = $CharacterAnimator
 @onready var sfx: Array[Node] = $CharacterAudio.get_children()
+@onready var colliders: Node2D = $Colliders
+@onready var grabdetect: Area2D = $GrabbableDetector
 
 # Character states
 enum State {
@@ -28,7 +30,7 @@ const DOUBLE_TAP_TIME: float = 0.3  # Time window for double tap detection
 const JUMP_DURATION: float = 0.25  # Maximum jump button hold time
 const JUMP_HEIGHT: float = 24.0  # Height when holding jump for full duration
 const FALL_TIME: float = 0.25  # Time to fall 32 pixels
-const TERMINAL_VELOCITY: float = 8.0 * TILE_SIZE  # 128 px/s
+const TERMINAL_VELOCITY: float = 12.0 * TILE_SIZE
 
 # Calculated physics values
 var jump_velocity: float
@@ -50,6 +52,8 @@ var last_right_tap_time: float = -1.0
 
 # Gimmick interaction
 var active_gimmick: Node = null  # Should be ConnectableGimmick type
+var grabbable_object: Grabbable = null # Should be Grabbable type
+var held_object: Grabbable = null
 
 
 func _ready() -> void:
@@ -84,11 +88,14 @@ func _physics_process(delta: float) -> void:
 	
 	# Apply movement
 	move_and_slide()
+	
+	if held_object:
+		held_object.global_transform.origin = global_position - Vector2(0, 16)
 
 
 func _process_normal_state(delta: float) -> void:
 	# Check for jump input
-	if Input.is_action_just_pressed("ui_accept"):  # Spacebar
+	if held_object == null and Input.is_action_just_pressed("p1_jump"):  # Spacebar
 		_start_jump()
 		_transition_to_state(State.AIR)
 		return
@@ -102,6 +109,50 @@ func _process_normal_state(delta: float) -> void:
 	# Check if we're no longer on the ground
 	if not is_on_floor():
 		_transition_to_state(State.AIR)
+	
+	# Normally I'd be opposed to animation control in a physics process function, but we're on a
+	# sharp deadline and it simplifies things.
+	if abs(velocity.x) < 2:
+		if held_object:
+			animator.play(&"idle_hold")
+		else:
+			animator.play(&"idle")
+	elif is_running:
+		if held_object:
+			animator.play(&"run_hold")
+		else:
+			animator.play(&"run")
+	else:
+		if held_object:
+			animator.play(&"walk_hold")
+		else:
+			animator.play(&"walk")
+	
+	# While grounded we can also turn around (unlike in the air)
+	if velocity.x < -0.2:
+		sprite.flip_h = true
+	elif velocity.x > 0.2:
+		sprite.flip_h = false
+	
+	# Reposition specialized Sensors
+	if sprite.flip_h:
+		colliders.scale.x = -1
+	else:
+		colliders.scale.x = 1
+	
+	# While in the normal state and an object is grabbable plus no object is held, the player can
+	# grab it.
+	if Input.is_action_just_pressed("p1_use"):
+		if grabbable_object and held_object == null:
+			print("grab it!")
+			held_object = grabbable_object
+			held_object.grab()
+			grabbable_object = null
+		elif held_object:
+			print("throw it!")
+			held_object.global_transform.origin.y -= 4
+			held_object.throw(Vector2(colliders.scale.x * 120, -20))
+			held_object = null
 
 
 func _process_air_state(delta: float) -> void:
@@ -110,7 +161,7 @@ func _process_air_state(delta: float) -> void:
 		jump_time += delta
 		
 		# Check if jump button was released early
-		if Input.is_action_just_released("ui_accept"):
+		if Input.is_action_just_released("p1_jump"):
 			jump_button_released = true
 			# Cut the upward velocity to end the jump early
 			if velocity.y < 0:
@@ -162,7 +213,7 @@ func _process_picking_up_state(delta: float) -> void:
 		velocity.y += fall_gravity * delta
 
 
-func _handle_horizontal_input(delta: float) -> void:
+func _handle_horizontal_input(_delta: float) -> void:
 	var input_direction: int = 0
 	var current_time = Time.get_ticks_msec() / 1000.0
 	
@@ -202,6 +253,7 @@ func _start_jump() -> void:
 	jump_button_released = false
 	sfx[0].play()
 	velocity.y = -jump_velocity
+	animator.play(&"jump")
 
 
 func _transition_to_state(new_state: State) -> void:
@@ -274,3 +326,12 @@ func is_grounded() -> bool:
 
 func get_current_state() -> State:
 	return current_state
+
+
+func _on_grabbable_detector_body_entered(body: Node2D) -> void:
+	# Might be more appropriate to maintain an array, but we're doing this fast and loose.
+	grabbable_object = body
+
+func _on_grabbable_detector_body_exited(body: Node2D) -> void:
+	if grabbable_object == body:
+		grabbable_object = null

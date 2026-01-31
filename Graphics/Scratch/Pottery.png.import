@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i5ojmdtrje4p"
-path="res://.godot/imported/player_sprite.png-324192006bb14662578ac941d82ebf46.ctex"
+uid="uid://0k1oclrja3d"
+path="res://.godot/imported/Pottery.png-f30f2fa5c7e5b089ce7981e9d108783c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Player/player_sprite.png"
-dest_files=["res://.godot/imported/player_sprite.png-324192006bb14662578ac941d82ebf46.ctex"]
+source_file="res://Graphics/Scratch/Pottery.png"
+dest_files=["res://.godot/imported/Pottery.png-f30f2fa5c7e5b089ce7981e9d108783c.ctex"]
 
 [params]
 

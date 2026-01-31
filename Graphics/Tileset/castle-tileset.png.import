@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2wwbh02des3y"
-path="res://.godot/imported/player_sprite_24p.png-eb42ca5822aa9ebef0defdf6f937fe96.ctex"
+uid="uid://dw4vwn0026at6"
+path="res://.godot/imported/castle-tileset.png-cd7f24bc5ab2fb279bfe55dca851fbfa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Player/player_sprite_24p.png"
-dest_files=["res://.godot/imported/player_sprite_24p.png-eb42ca5822aa9ebef0defdf6f937fe96.ctex"]
+source_file="res://Graphics/Tileset/castle-tileset.png"
+dest_files=["res://.godot/imported/castle-tileset.png-cd7f24bc5ab2fb279bfe55dca851fbfa.ctex"]
 
 [params]
 

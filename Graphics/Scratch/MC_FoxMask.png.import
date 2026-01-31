@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://buwb0n76qe2pf"
-path="res://.godot/imported/player_sprite_16.png-a6a83cfa8910b2a9de88868fe0cbe9f5.ctex"
+uid="uid://csw5tqewuvr6a"
+path="res://.godot/imported/MC_FoxMask.png-0833c2f2a5954cc997b041c54286bf57.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Player/player_sprite_16.png"
-dest_files=["res://.godot/imported/player_sprite_16.png-a6a83cfa8910b2a9de88868fe0cbe9f5.ctex"]
+source_file="res://Graphics/Scratch/MC_FoxMask.png"
+dest_files=["res://.godot/imported/MC_FoxMask.png-0833c2f2a5954cc997b041c54286bf57.ctex"]
 
 [params]
 

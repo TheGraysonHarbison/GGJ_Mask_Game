@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i5ojmdtrje4p"
-path="res://.godot/imported/player_sprite.png-324192006bb14662578ac941d82ebf46.ctex"
+uid="uid://d4f3vx07eevye"
+path="res://.godot/imported/barrel.png-f30d59c4c68346bc84ac44d7ff1f1037.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Player/player_sprite.png"
-dest_files=["res://.godot/imported/player_sprite.png-324192006bb14662578ac941d82ebf46.ctex"]
+source_file="res://Graphics/Objects/barrel.png"
+dest_files=["res://.godot/imported/barrel.png-f30d59c4c68346bc84ac44d7ff1f1037.ctex"]
 
 [params]
 
