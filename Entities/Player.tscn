@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://caetea6qmt3an" path="res://Scripts/Player/Player.gd" id="1_1iada"]
 [ext_resource type="Texture2D" uid="uid://i5ojmdtrje4p" path="res://Graphics/Player/player_sprite.png" id="2_0gd87"]
-[ext_resource type="AudioStream" uid="uid://qpgvm7omubh3" path="res://Sound/SFX/jump.wav" id="3_0gd87"]
+[ext_resource type="AudioStream" uid="uid://k1eiirxujg2q" path="res://Sound/SFX/jump.ogg" id="3_0gd87"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_41wu2"]
 size = Vector2(6, 16)
@@ -184,6 +184,7 @@ stream = ExtResource("3_0gd87")
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=1192103082]
 
 [node name="Colliders" type="Node2D" parent="." unique_id=1364503621]
+visible = false
 
 [node name="GrabbableDetector" type="Area2D" parent="Colliders" unique_id=860018691]
 position = Vector2(5, -2)

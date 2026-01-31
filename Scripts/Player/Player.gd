@@ -1,18 +1,17 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 # Reference to child nodes
 @onready var sprite: Sprite2D = $CharacterSprite
 @onready var animator: AnimationPlayer = $CharacterAnimator
 @onready var sfx: Array[Node] = $CharacterAudio.get_children()
 @onready var colliders: Node2D = $Colliders
-@onready var grabdetect: Area2D = $GrabbableDetector
+@onready var grabdetect: Area2D = $Colliders/GrabbableDetector
 
 # Character states
 enum State {
 	NORMAL,
 	AIR,
 	GIMMICK,
-	PICKING_UP
 }
 
 var current_state: State = State.AIR
@@ -83,8 +82,6 @@ func _physics_process(delta: float) -> void:
 			_process_air_state(delta)
 		State.GIMMICK:
 			_process_gimmick_state(delta)
-		State.PICKING_UP:
-			_process_picking_up_state(delta)
 	
 	# Apply movement
 	move_and_slide()
@@ -284,8 +281,6 @@ func _transition_to_state(new_state: State) -> void:
 			jump_button_released = false
 		State.GIMMICK:
 			pass
-		State.PICKING_UP:
-			pass
 	
 	# Enter new state
 	current_state = new_state
@@ -297,9 +292,6 @@ func _transition_to_state(new_state: State) -> void:
 			pass
 		State.GIMMICK:
 			pass
-		State.PICKING_UP:
-			# Reset horizontal velocity when picking up
-			velocity.x = 0
 
 
 # Public methods for external state control
@@ -319,17 +311,6 @@ func exit_gimmick_state() -> void:
 		_transition_to_state(State.AIR)
 
 
-func enter_picking_up_state() -> void:
-	"""Called when the player starts picking up an object"""
-	_transition_to_state(State.PICKING_UP)
-
-
-func exit_picking_up_state() -> void:
-	"""Called when the player finishes picking up an object"""
-	if is_on_floor():
-		_transition_to_state(State.NORMAL)
-	else:
-		_transition_to_state(State.AIR)
 
 
 # Utility getters

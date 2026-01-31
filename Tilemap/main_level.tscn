@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dy3a0o3qdffup" path="res://Entities/Grabbables/Barrel.tscn" id="3_w6lig"]
 [ext_resource type="PackedScene" uid="uid://fgrei0jiv5of" path="res://Entities/Grabbables/ExplodingPot.tscn" id="4_mw435"]
 [ext_resource type="AudioStream" uid="uid://44rksh3besh2" path="res://Sound/Music/Act 1 - Movement 1.ogg" id="5_mkqga"]
+[ext_resource type="PackedScene" uid="uid://ddfwg37hyv2uo" path="res://Entities/Gimmicks/Spring.tscn" id="6_ojaef"]
 
 [node name="MainLevel" type="Node2D" unique_id=303021948]
 
@@ -31,3 +32,6 @@ position = Vector2(-126, 323)
 stream = ExtResource("5_mkqga")
 volume_db = -2.0
 autoplay = true
+
+[node name="Spring" parent="." unique_id=1961445991 instance=ExtResource("6_ojaef")]
+position = Vector2(31, 323)

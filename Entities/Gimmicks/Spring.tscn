@@ -1,0 +1,240 @@
+[gd_scene format=3 uid="uid://ddfwg37hyv2uo"]
+
+[ext_resource type="Script" uid="uid://jbovut1b81aa" path="res://Entities/Gimmicks/Spring.gd" id="1_6372r"]
+[ext_resource type="Texture2D" uid="uid://ptwny7j3f75k" path="res://Graphics/Gimmicks/spring_board.png" id="1_wc645"]
+[ext_resource type="AudioStream" uid="uid://qpgvm7omubh3" path="res://Sound/SFX/spring.wav" id="2_fu530"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6372r"]
+size = Vector2(10, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5fp3y"]
+size = Vector2(2.5, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nryn3"]
+size = Vector2(2.5, 8)
+
+[sub_resource type="Animation" id="Animation_agap7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpringTopTracker:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, -8)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("right_wall:collision_layer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("left_wall:collision_layer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_vew67"]
+resource_name = "idle"
+length = 0.016668335
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpringTopTracker:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, -8)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("right_wall:collision_layer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("left_wall:collision_layer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_ecnd8"]
+resource_name = "springy"
+length = 0.20000167
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpringTopTracker:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1, -6), Vector2(-1, -6)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("right_wall:collision_layer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("left_wall:collision_layer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hofbf"]
+_data = {
+&"RESET": SubResource("Animation_agap7"),
+&"idle": SubResource("Animation_vew67"),
+&"springy": SubResource("Animation_ecnd8")
+}
+
+[node name="Spring" type="Node2D" unique_id=1961445991]
+script = ExtResource("1_6372r")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=147004633]
+position = Vector2(0, -8)
+texture = ExtResource("1_wc645")
+hframes = 4
+
+[node name="PlayerCollider" type="Area2D" parent="." unique_id=1333632389]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCollider" unique_id=296509290]
+position = Vector2(-1, -8)
+shape = SubResource("RectangleShape2D_6372r")
+
+[node name="SpringTopTracker" type="Node2D" parent="." unique_id=1119230730]
+position = Vector2(-1, -8)
+
+[node name="right_wall" type="CharacterBody2D" parent="." unique_id=1592836543]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right_wall" unique_id=989172475]
+position = Vector2(5.75, -4)
+shape = SubResource("RectangleShape2D_5fp3y")
+
+[node name="left_wall" type="CharacterBody2D" parent="." unique_id=2038103968]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left_wall" unique_id=1431253940]
+position = Vector2(-7.75, -4)
+shape = SubResource("RectangleShape2D_nryn3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=993462839]
+libraries/ = SubResource("AnimationLibrary_hofbf")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=978457778]
+stream = ExtResource("2_fu530")
+
+[connection signal="body_entered" from="PlayerCollider" to="." method="_on_player_collider_body_entered"]
