@@ -1,0 +1,13 @@
+[gd_scene format=4 uid="uid://b6bhq4ya04r6o"]
+
+[ext_resource type="TileSet" uid="uid://dcm81tfqyrau5" path="res://Tilemap/16_16_tileset.tres" id="1_hn40b"]
+[ext_resource type="PackedScene" uid="uid://dqxa4242rqbwq" path="res://Entities/Player.tscn" id="2_w6lig"]
+
+[node name="MainLevel" type="Node2D" unique_id=303021948]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=163939619]
+tile_map_data = PackedByteArray("AAAAACYAAAABAAMAAAABACYAAAABAAMAAAACACYAAAABAAMAAAADACYAAAABAAMAAAAEACYAAAABAAMAAAAFACYAAAABAAMAAAAGACYAAAABAAMAAAAHACYAAAABAAMAAAAIACYAAAABAAMAAAAJACYAAAABAAMAAAAKACYAAAABAAMAAAALACYAAAABAAMAAAAMACYAAAABAAMAAAANACYAAAABAAMAAAAOACYAAAABAAMAAAAPACYAAAABAAMAAAAQACYAAAABAAMAAAARACYAAAABAAMAAAASACYAAAABAAMAAAATACYAAAABAAMAAAAUACYAAAABAAMAAAAVACYAAAABAAMAAAAWACYAAAABAAMAAAA=")
+tile_set = ExtResource("1_hn40b")
+
+[node name="MainCharacter" parent="." unique_id=1895139221 instance=ExtResource("2_w6lig")]
+position = Vector2(10, 604)

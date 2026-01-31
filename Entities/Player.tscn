@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dqxa4242rqbwq"]
+
+[ext_resource type="Script" uid="uid://caetea6qmt3an" path="res://Scripts/Player/Player.gd" id="1_1iada"]
+[ext_resource type="Texture2D" uid="uid://buwb0n76qe2pf" path="res://Graphics/Player/player_sprite_16.png" id="2_1iada"]
+[ext_resource type="AudioStream" uid="uid://qpgvm7omubh3" path="res://Sound/SFX/jump.wav" id="3_0gd87"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_41wu2"]
+size = Vector2(6, 16)
+
+[node name="Player" type="CharacterBody2D" unique_id=332226137]
+script = ExtResource("1_1iada")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="." unique_id=1174398582]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_41wu2")
+
+[node name="CharacterSprite" type="Sprite2D" parent="." unique_id=1584002901]
+position = Vector2(0, -8)
+texture = ExtResource("2_1iada")
+
+[node name="CharacterAnimator" type="AnimationPlayer" parent="." unique_id=17821594]
+
+[node name="CharacterAudio" type="Node" parent="." unique_id=1399622480]
+
+[node name="JUMP" type="AudioStreamPlayer" parent="CharacterAudio" unique_id=202211855]
+stream = ExtResource("3_0gd87")
+
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=1192103082]
