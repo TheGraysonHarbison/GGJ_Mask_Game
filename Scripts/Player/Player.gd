@@ -95,10 +95,12 @@ func _physics_process(delta: float) -> void:
 
 func _process_normal_state(delta: float) -> void:
 	# Check for jump input
-	if held_object == null and Input.is_action_just_pressed("p1_jump"):  # Spacebar
-		_start_jump()
-		_transition_to_state(State.AIR)
-		return
+	if Input.is_action_just_pressed("p1_jump"):  # Spacebar
+		# Can only jump if either an object is unheld or the held object isn't heavy
+		if held_object == null or !held_object.is_heavy():
+			_start_jump()
+			_transition_to_state(State.AIR)
+			return
 	
 	# Handle horizontal movement
 	_handle_horizontal_input(delta)
@@ -149,11 +151,18 @@ func _process_normal_state(delta: float) -> void:
 			held_object.grab()
 			grabbable_object = null
 		elif held_object:
-			print("throw it!")
-			held_object.global_transform.origin.y -= 4
-			held_object.throw(Vector2(colliders.scale.x * 120, -20))
-			held_object = null
+			throw_object()
 
+func throw_object() -> void:
+	var scaler: Vector2 = Vector2(1 * colliders.scale.x, 1)
+	
+	if is_running:
+		scaler.x = scaler.x * 1.5
+	
+	held_object.global_transform.origin.y -= 4
+	held_object.throw(Vector2(scaler.x * held_object.get_throw_vector().x,
+							scaler.y * held_object.get_throw_vector().y))
+	held_object = null
 
 func _process_air_state(delta: float) -> void:
 	# Handle jump physics
@@ -181,6 +190,11 @@ func _process_air_state(delta: float) -> void:
 	
 	# Handle horizontal movement in air
 	_handle_horizontal_input(delta)
+	
+	# You can't pick up objects while airborn, but you can throw them.
+	if Input.is_action_just_pressed("p1_use"):
+		if held_object:
+			throw_object()
 	
 	# Check for landing
 	if is_on_floor():
@@ -232,6 +246,10 @@ func _handle_horizontal_input(_delta: float) -> void:
 		if current_time - last_left_tap_time < DOUBLE_TAP_TIME:
 			is_running = true
 		last_left_tap_time = current_time
+	
+	# Can't run while holding heavy object
+	if held_object and held_object.is_heavy():
+		is_running = false
 	
 	# Apply movement if we have input
 	if input_direction != 0:

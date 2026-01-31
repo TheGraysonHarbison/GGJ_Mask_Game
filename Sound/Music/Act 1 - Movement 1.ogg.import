@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://44rksh3besh2"
+path="res://.godot/imported/Act 1 - Movement 1.ogg-c806a196d1ee26ca354c47ad5ca110db.oggvorbisstr"
+
+[deps]
+
+source_file="res://Sound/Music/Act 1 - Movement 1.ogg"
+dest_files=["res://.godot/imported/Act 1 - Movement 1.ogg-c806a196d1ee26ca354c47ad5ca110db.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

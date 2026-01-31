@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://l5kejgyflopq"]
+
+[ext_resource type="Texture2D" uid="uid://s75yxca673xj" path="res://Graphics/Effects/explosion.png" id="1_shuxk"]
+[ext_resource type="AudioStream" uid="uid://crxh3r2tu6idb" path="res://Sound/SFX/explosion.wav" id="2_cb4hw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cb4hw"]
+atlas = ExtResource("1_shuxk")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rykwl"]
+atlas = ExtResource("1_shuxk")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4ysf"]
+atlas = ExtResource("1_shuxk")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n67i0"]
+atlas = ExtResource("1_shuxk")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxrf3"]
+atlas = ExtResource("1_shuxk")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvwdy"]
+atlas = ExtResource("1_shuxk")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6sh1"]
+atlas = ExtResource("1_shuxk")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rqei7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cb4hw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rykwl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x4ysf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n67i0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxrf3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvwdy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6sh1")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8ruut"]
+radius = 16.0
+
+[node name="Explosion" type="Node2D" unique_id=1782255459]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1744091777]
+sprite_frames = SubResource("SpriteFrames_rqei7")
+autoplay = "default"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=354399101]
+stream = ExtResource("2_cb4hw")
+autoplay = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=189796587]
+collision_layer = 4
+collision_mask = 4
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=220676721]
+shape = SubResource("CircleShape2D_8ruut")
