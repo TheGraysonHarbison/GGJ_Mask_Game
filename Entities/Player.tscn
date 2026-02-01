@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://k1eiirxujg2q" path="res://Sound/SFX/jump.ogg" id="3_0gd87"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_41wu2"]
-size = Vector2(6, 16)
+size = Vector2(6, 15)
 
 [sub_resource type="Animation" id="Animation_c7jvw"]
 length = 0.001
@@ -160,11 +160,14 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0gd87"]
 size = Vector2(7, 13)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7jvw"]
+size = Vector2(2, 4)
+
 [node name="Player" type="CharacterBody2D" unique_id=332226137]
 script = ExtResource("1_1iada")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="." unique_id=1174398582]
-position = Vector2(0, -8)
+position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_41wu2")
 
 [node name="CharacterSprite" type="Sprite2D" parent="." unique_id=1584002901]
@@ -184,9 +187,9 @@ stream = ExtResource("3_0gd87")
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=1192103082]
 
 [node name="Colliders" type="Node2D" parent="." unique_id=1364503621]
-visible = false
 
 [node name="GrabbableDetector" type="Area2D" parent="Colliders" unique_id=860018691]
+visible = false
 position = Vector2(5, -2)
 collision_layer = 2
 collision_mask = 2
@@ -195,5 +198,13 @@ collision_mask = 2
 position = Vector2(-1.5, -9)
 shape = SubResource("RectangleShape2D_0gd87")
 
+[node name="WallDetector" type="Area2D" parent="Colliders" unique_id=939921880]
+position = Vector2(4, -5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colliders/WallDetector" unique_id=1928971928]
+shape = SubResource("RectangleShape2D_c7jvw")
+
 [connection signal="body_entered" from="Colliders/GrabbableDetector" to="." method="_on_grabbable_detector_body_entered"]
 [connection signal="body_exited" from="Colliders/GrabbableDetector" to="." method="_on_grabbable_detector_body_exited"]
+[connection signal="body_entered" from="Colliders/WallDetector" to="." method="_on_wall_detector_body_entered"]
+[connection signal="body_exited" from="Colliders/WallDetector" to="." method="_on_wall_detector_body_exited"]

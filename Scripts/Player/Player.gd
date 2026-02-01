@@ -6,6 +6,7 @@ class_name Player extends CharacterBody2D
 @onready var sfx: Array[Node] = $CharacterAudio.get_children()
 @onready var colliders: Node2D = $Colliders
 @onready var grabdetect: Area2D = $Colliders/GrabbableDetector
+@onready var walldetect: Area2D = $Colliders/WallDetector
 
 # Character states
 enum State {
@@ -36,6 +37,10 @@ var jump_velocity: float
 var jump_gravity: float
 var fall_gravity: float
 
+# Forces the player in a direction when doing things like wall jump so that they can't repeatedly
+# jump off the same wall
+var jump_direction_modifier: float = 0.0
+
 # Movement state
 var is_running: bool = false
 var facing_direction: int = 1  # 1 for right, -1 for left
@@ -53,6 +58,8 @@ var last_right_tap_time: float = -1.0
 var active_gimmick: Node = null  # Should be ConnectableGimmick type
 var grabbable_object: Grabbable = null # Should be Grabbable type
 var held_object: Grabbable = null
+
+var walls_touching := 0
 
 
 func _ready() -> void:
@@ -151,6 +158,10 @@ func _process_normal_state(delta: float) -> void:
 			throw_object()
 
 func throw_object() -> void:
+	if held_object.test_overlapping():
+		print("warning -- overlapping bodies")
+		return
+
 	var scaler: Vector2 = Vector2(1 * colliders.scale.x, 1)
 	
 	if is_running:
@@ -193,11 +204,22 @@ func _process_air_state(delta: float) -> void:
 		if held_object:
 			throw_object()
 	
+	# If we are against a wall and attempt to jump again, we can wall jump.
+	if Input.is_action_just_pressed("p1_jump"):
+		if walls_touching > 0:
+			_start_jump()
+			colliders.scale.x *= -1
+			sprite.flip_h = false if colliders.scale.x > 0 else true
+			jump_direction_modifier = colliders.scale.x * WALK_SPEED
+	
+	
 	# Check for landing
 	if is_on_floor():
 		# Push player out of ground if embedded
 		if velocity.y > 0:
 			velocity.y = 0
+		
+		
 		
 		_transition_to_state(State.NORMAL)
 
@@ -260,6 +282,11 @@ func _handle_horizontal_input(_delta: float) -> void:
 		# No input - stop moving and reset run state
 		velocity.x = 0
 		is_running = false
+		
+	if jump_direction_modifier < 0:
+		velocity.x = clampf(velocity.x, velocity.x, jump_direction_modifier)
+	elif jump_direction_modifier > 0:
+		velocity.x = clampf(velocity.x, jump_direction_modifier, velocity.x)
 
 
 func _start_jump() -> void:
@@ -287,6 +314,7 @@ func _transition_to_state(new_state: State) -> void:
 	
 	match new_state:
 		State.NORMAL:
+			jump_direction_modifier = 0.0
 			pass
 		State.AIR:
 			pass
@@ -310,9 +338,6 @@ func exit_gimmick_state() -> void:
 	else:
 		_transition_to_state(State.AIR)
 
-
-
-
 # Utility getters
 
 func get_facing_direction() -> int:
@@ -334,3 +359,19 @@ func _on_grabbable_detector_body_entered(body: Node2D) -> void:
 func _on_grabbable_detector_body_exited(body: Node2D) -> void:
 	if grabbable_object == body:
 		grabbable_object = null
+
+
+func _on_wall_detector_body_entered(body: Node2D) -> void:
+	if body is not TileMapLayer:
+		return
+		
+	walls_touching += 1
+	pass # Replace with function body.
+
+
+func _on_wall_detector_body_exited(body: Node2D) -> void:
+	if body is not TileMapLayer:
+		return
+		
+	walls_touching -= 1
+	pass # Replace with function body.

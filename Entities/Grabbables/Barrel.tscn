@@ -3,20 +3,24 @@
 [ext_resource type="Script" uid="uid://3deau8tk2jug" path="res://Scripts/Objects/grabbable.gd" id="1_0ae4f"]
 [ext_resource type="Texture2D" uid="uid://d4f3vx07eevye" path="res://Graphics/Objects/barrel.png" id="1_1r1b8"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1r1b8"]
-size = Vector2(14, 16)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sb225"]
+size = Vector2(12, 16)
 
 [node name="Barrel" type="RigidBody2D" unique_id=1561141574]
 collision_layer = 3
 collision_mask = 3
 lock_rotation = true
 freeze_mode = 1
+contact_monitor = true
+max_contacts_reported = 4
 script = ExtResource("1_0ae4f")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1965525448]
 position = Vector2(0, -8)
 texture = ExtResource("1_1r1b8")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=133317329]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=596550110]
 position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_1r1b8")
+shape = SubResource("RectangleShape2D_sb225")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

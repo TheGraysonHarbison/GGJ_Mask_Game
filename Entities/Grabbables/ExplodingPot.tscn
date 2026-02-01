@@ -4,26 +4,27 @@
 [ext_resource type="Texture2D" uid="uid://dtpxrecp2vtxs" path="res://Graphics/Objects/urn_explosive.png" id="2_ervjq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1r1b8"]
+resource_local_to_scene = true
 size = Vector2(12, 14)
 
 [node name="ExplodingPot" type="RigidBody2D" unique_id=1561141574]
-collision_layer = 7
-collision_mask = 7
+collision_layer = 3
+collision_mask = 3
 gravity_scale = 0.8
 lock_rotation = true
 freeze_mode = 1
 contact_monitor = true
-max_contacts_reported = 1
+max_contacts_reported = 4
 script = ExtResource("1_n1jdd")
 throw_vector = Vector2(120, -32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=133317329]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_1r1b8")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1965525448]
 position = Vector2(0, -8)
 texture = ExtResource("2_ervjq")
 hframes = 6
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=133317329]
-position = Vector2(0, -7)
-shape = SubResource("RectangleShape2D_1r1b8")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

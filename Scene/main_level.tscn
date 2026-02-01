@@ -1,0 +1,43 @@
+[gd_scene format=4 uid="uid://b6bhq4ya04r6o"]
+
+[ext_resource type="TileSet" uid="uid://dcm81tfqyrau5" path="res://Tilemap/16_16_tileset.tres" id="1_uy40e"]
+[ext_resource type="PackedScene" uid="uid://dqxa4242rqbwq" path="res://Entities/Player.tscn" id="2_orc0r"]
+[ext_resource type="PackedScene" uid="uid://dy3a0o3qdffup" path="res://Entities/Grabbables/Barrel.tscn" id="3_d1qai"]
+[ext_resource type="PackedScene" uid="uid://fgrei0jiv5of" path="res://Entities/Grabbables/ExplodingPot.tscn" id="4_ll3eg"]
+[ext_resource type="AudioStream" uid="uid://44rksh3besh2" path="res://Sound/Music/Act 1 - Movement 1.ogg" id="5_h2fhx"]
+[ext_resource type="PackedScene" uid="uid://ddfwg37hyv2uo" path="res://Entities/Gimmicks/Spring.tscn" id="6_7fj4n"]
+[ext_resource type="PackedScene" uid="uid://bemqq4j18pryn" path="res://Entities/Grabbables/GrabSpring.tscn" id="7_orc0r"]
+
+[node name="MainLevel" type="Node2D" unique_id=303021948]
+
+[node name="MainMusic" type="AudioStreamPlayer" parent="." unique_id=1391099675]
+stream = ExtResource("5_h2fhx")
+volume_db = -2.0
+autoplay = true
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=163939619]
+position = Vector2(-185, -285)
+tile_map_data = PackedByteArray("AAAAACYAAAABAAMAAAABACYAAAABAAMAAAACACYAAAABAAMAAAADACYAAAABAAMAAAAEACYAAAABAAMAAAAFACYAAAABAAMAAAAGACYAAAABAAMAAAAHACYAAAABAAMAAAAIACYAAAABAAMAAAAJACYAAAABAAMAAAAKACYAAAABAAMAAAALACYAAAABAAMAAAAMACYAAAABAAMAAAANACYAAAABAAMAAAAOACYAAAABAAMAAAAPACYAAAABAAMAAAAQACYAAAABAAMAAAARACYAAAABAAMAAAASACYAAAABAAMAAAATACYAAAABAAMAAAAUACYAAAABAAMAAAAVACYAAAABAAMAAAAWACYAAAABAAMAAAAXACYAAAABAAMAAAAXACUAAAABAAMAAAAXACMAAAABAAMAAAAXACIAAAABAAMAAAAXACEAAAABAAMAAAAXACAAAAABAAMAAAAXAB8AAAABAAMAAAAXACQAAAABAAMAAAD//yYAAAABAAMAAAD+/yYAAAABAAMAAAD9/yYAAAABAAMAAAD8/yYAAAABAAMAAAD7/yYAAAABAAMAAAD7/yUAAAABAAMAAAD7/yQAAAABAAMAAAD7/yMAAAABAAMAAAD7/yIAAAABAAMAAAD7/yEAAAABAAMAAAD7/yAAAAABAAMAAAD7/x8AAAABAAMAAAA=")
+tile_set = ExtResource("1_uy40e")
+
+[node name="MainCharacter" parent="." unique_id=1895139221 instance=ExtResource("2_orc0r")]
+position = Vector2(-173, 303)
+
+[node name="Interactibles" type="Node2D" parent="." unique_id=144084320]
+
+[node name="Barrel3" parent="Interactibles" unique_id=1967709032 instance=ExtResource("7_orc0r")]
+position = Vector2(94, 323)
+
+[node name="Spring" parent="Interactibles" unique_id=1961445991 instance=ExtResource("6_7fj4n")]
+position = Vector2(31, 323)
+
+[node name="Barrel" parent="Interactibles" unique_id=1561141574 instance=ExtResource("3_d1qai")]
+position = Vector2(11, 278)
+heavy = true
+
+[node name="Pot" parent="Interactibles" unique_id=152510318 instance=ExtResource("4_ll3eg")]
+position = Vector2(-8, 319)
+
+[node name="Barrel2" parent="Interactibles" unique_id=1903288990 instance=ExtResource("3_d1qai")]
+position = Vector2(-97, 302)
+heavy = true
