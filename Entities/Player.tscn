@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://caetea6qmt3an" path="res://Scripts/Player/Player.gd" id="1_1iada"]
 [ext_resource type="Texture2D" uid="uid://i5ojmdtrje4p" path="res://Graphics/Player/player_sprite.png" id="2_0gd87"]
 [ext_resource type="AudioStream" uid="uid://k1eiirxujg2q" path="res://Sound/SFX/jump.ogg" id="3_0gd87"]
+[ext_resource type="Texture2D" uid="uid://cvvbnty2xux4" path="res://Graphics/Player/player_mask.png" id="3_2a4id"]
 [ext_resource type="AudioStream" uid="uid://ds0tydnt3qu1i" path="res://Sound/SFX/death.ogg" id="4_c7jvw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_41wu2"]
@@ -46,6 +47,30 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MaskNode/MaskSprite:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -8)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MaskNode/MaskSprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_paumt"]
 resource_name = "dying"
@@ -87,6 +112,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MaskNode/MaskSprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_2a4id"]
 resource_name = "idle"
@@ -103,6 +140,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MaskNode/MaskSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -8)]
 }
 
 [sub_resource type="Animation" id="Animation_ry37w"]
@@ -121,6 +170,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [5]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MaskNode/MaskSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -8)]
+}
 
 [sub_resource type="Animation" id="Animation_io258"]
 resource_name = "jump"
@@ -137,6 +198,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [16]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MaskNode/MaskSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, -7)]
 }
 
 [sub_resource type="Animation" id="Animation_0gd87"]
@@ -156,6 +229,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [1, 2, 3]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MaskNode/MaskSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -8)]
+}
 
 [sub_resource type="Animation" id="Animation_w6hej"]
 resource_name = "run_hold"
@@ -173,6 +258,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [4, 5, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MaskNode/MaskSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -8)]
 }
 
 [sub_resource type="Animation" id="Animation_drum4"]
@@ -192,6 +289,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [1, 2, 3]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MaskNode/MaskSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -8)]
+}
 
 [sub_resource type="Animation" id="Animation_nn0oq"]
 resource_name = "walk_hold"
@@ -209,6 +318,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [4, 5, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MaskNode/MaskSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -8)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_drum4"]
@@ -244,7 +365,12 @@ texture = ExtResource("2_0gd87")
 hframes = 9
 vframes = 2
 
-[node name="MaskSprite" type="Sprite2D" parent="." unique_id=858318908]
+[node name="MaskNode" type="Node2D" parent="." unique_id=1646341128]
+
+[node name="MaskSprite" type="Sprite2D" parent="MaskNode" unique_id=858318908]
+position = Vector2(0, -8)
+texture = ExtResource("3_2a4id")
+hframes = 5
 
 [node name="CharacterAnimator" type="AnimationPlayer" parent="." unique_id=17821594]
 libraries/ = SubResource("AnimationLibrary_drum4")

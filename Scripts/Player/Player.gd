@@ -76,6 +76,8 @@ func set_default_state():
 func load_default_state():
 	global_position = original_position
 	current_state = State.AIR
+	if held_object:
+		throw_object(true)
 	
 	pass
 
@@ -163,8 +165,10 @@ func _process_normal_state(delta: float) -> void:
 	# Reposition specialized Sensors
 	if sprite.flip_h:
 		colliders.scale.x = -1
+		$MaskNode.scale.x = -1
 	else:
 		colliders.scale.x = 1
+		$MaskNode.scale.x = 1
 	
 	# While in the normal state and an object is grabbable plus no object is held, the player can
 	# grab it.
@@ -177,8 +181,8 @@ func _process_normal_state(delta: float) -> void:
 		elif held_object:
 			throw_object()
 
-func throw_object() -> void:
-	if held_object.test_overlapping():
+func throw_object(unsafe: bool = false) -> void:
+	if not unsafe and held_object.test_overlapping():
 		print("warning -- overlapping bodies")
 		return
 
@@ -267,6 +271,8 @@ func _process_dying_state(delta: float) -> void:
 	if death_timer >= 2:
 		LevelManager.get_active_level().reset_to_spawn()
 		LevelManager.get_active_level().resume_music()
+		if has_fox_mask:
+			$MaskNode/MaskSprite.visible = true
 	
 	pass
 
