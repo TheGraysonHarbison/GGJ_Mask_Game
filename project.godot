@@ -12,7 +12,11 @@ config_version=5
 
 config/name="Kabuki_Platformer_Scratch"
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 run/main_scene="res://Scene/main_level.tscn"
+=======
+run/main_scene="uid://b344c1wjc8el6"
+>>>>>>> Stashed changes
 =======
 run/main_scene="uid://b344c1wjc8el6"
 >>>>>>> Stashed changes
