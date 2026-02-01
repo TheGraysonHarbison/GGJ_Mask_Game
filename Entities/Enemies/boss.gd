@@ -40,11 +40,11 @@ var directionLock : bool = false
 
 # Setup
 func _ready():
-	_setFacing(false)
+	_setFacing(true)
 	_swapToState(BehaviorState.WaitingForFightToStart)
 
 # Start The Fight
-func _startFight():
+func _startFight(body):
 	print("Beginning Boss Fight!")
 	_swapToState(BehaviorState.Introduction)
 
@@ -98,7 +98,7 @@ func _onEnterRecoveringState():
 	velocity.x = 0
 	directionLock = false
 	currentRecoveryTime = 0
-	animator.play("boss/idle")
+	animator.play("boss/recover")
 
 # Handle Checks For Slashing
 func _onExitCharging():
@@ -170,3 +170,10 @@ func _facePlayer() -> void:
 		_setFacing(true)
 	else:
 		_setFacing(false)
+
+func _on_hurt_box_area_entered(area: Area2D) -> void:
+	#Ignore my own hurtbox!
+	if area == $Colliders/Front_Detector:
+		return
+		
+	print("HIt")

@@ -88,6 +88,24 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_1y1me"]
+resource_name = "recover"
+length = 0.25000417
+loop_mode = 1
+step = 0.041666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 3, 2]
+}
+
 [sub_resource type="Animation" id="Animation_chow1"]
 resource_name = "slash"
 length = 0.37500417
@@ -177,6 +195,7 @@ _data = {
 &"die": SubResource("Animation_f7vcp"),
 &"idle": SubResource("Animation_ua55g"),
 &"intro": SubResource("Animation_aquot"),
+&"recover": SubResource("Animation_1y1me"),
 &"slash": SubResource("Animation_chow1"),
 &"tornado_spin": SubResource("Animation_j3vu4"),
 &"tornado_start": SubResource("Animation_6rbxq"),
@@ -208,11 +227,6 @@ libraries/boss = SubResource("AnimationLibrary_f7vcp")
 position = Vector2(0, -20)
 shape = SubResource("RectangleShape2D_ridyd")
 
-[node name="TEMP Start Fight Timer" type="Timer" parent="." unique_id=223633990]
-wait_time = 0.2
-one_shot = true
-autostart = true
-
 [node name="Colliders" type="Node2D" parent="." unique_id=479971618]
 
 [node name="Front_Detector" type="Area2D" parent="Colliders" unique_id=1107254072]
@@ -222,4 +236,11 @@ position = Vector2(-7, -19)
 shape = SubResource("RectangleShape2D_ua55g")
 debug_color = Color(0.9015323, 0.1775963, 0.63321024, 0.41960785)
 
-[connection signal="timeout" from="TEMP Start Fight Timer" to="." method="_startFight"]
+[node name="Hurt" type="Area2D" parent="Colliders" unique_id=1380829420]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colliders/Hurt" unique_id=92134690]
+position = Vector2(-7, -19)
+shape = SubResource("RectangleShape2D_ua55g")
+debug_color = Color(0.9015323, 0.1775963, 0.63321024, 0.41960785)

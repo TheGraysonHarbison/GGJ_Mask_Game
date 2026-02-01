@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://t2cdc5gfuevc"]
+
+[ext_resource type="Texture2D" uid="uid://7d5dspj31ova" path="res://Graphics/Scratch/Big Crate.png" id="1_nbale"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xvodt"]
+size = Vector2(24, 24)
+
+[node name="DoorToBossArena" type="StaticBody2D" unique_id=1942933629]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=328564342]
+shape = SubResource("RectangleShape2D_xvodt")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1392157087]
+
+[node name="BigCrate" type="Sprite2D" parent="." unique_id=898428396]
+modulate = Color(0.2603963, 0.06836094, 0.08238261, 1)
+texture = ExtResource("1_nbale")

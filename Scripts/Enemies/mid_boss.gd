@@ -10,6 +10,7 @@ var target: Node2D = null
 var activated = false
 
 @export var input_vector := Vector2(0, 0)
+signal Midboss_Dies
 
 func _ready() -> void:
 	#activate() # Remove on final -- should be triggered by an area body entered signal
@@ -30,6 +31,7 @@ func kill():
 	$BossController.play(&"dead")
 	$boss_box.position.x -= 7000 # He'll fall if his collider is way to the left of the playfield
 	$DIE.play()
+	Midboss_Dies.emit()
 	# Need to spawn a mask -- mask needs to fall in case it was too high.
 
 func _physics_process(delta: float) -> void:
