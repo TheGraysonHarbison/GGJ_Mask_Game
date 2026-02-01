@@ -1,0 +1,225 @@
+[gd_scene format=3 uid="uid://cfwwb7w7k1bf4"]
+
+[ext_resource type="Texture2D" uid="uid://b5xkty3km082v" path="res://Graphics/Scratch/Boss.png" id="1_bwaly"]
+[ext_resource type="Script" uid="uid://dicyi0v88vhjo" path="res://Entities/Enemies/boss.gd" id="1_ridyd"]
+
+[sub_resource type="Animation" id="Animation_bwaly"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ridyd"]
+_data = {
+&"RESET": SubResource("Animation_bwaly")
+}
+
+[sub_resource type="Animation" id="Animation_f7vcp"]
+resource_name = "die"
+step = 0.041666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6647217),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [24, 25]
+}
+
+[sub_resource type="Animation" id="Animation_ua55g"]
+resource_name = "idle"
+length = 0.041670833
+loop_mode = 1
+step = 0.041666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_aquot"]
+resource_name = "intro"
+length = 2.0833375
+step = 0.041666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25, 1.5833334, 1.6666666, 1.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 6, 7, 2]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.0833333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [2],
+"method": &"_swapToState"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_chow1"]
+resource_name = "slash"
+length = 0.37500417
+step = 0.041666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.20833333, 0.2916667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [15, 16, 17, 2]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.375),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [7],
+"method": &"_swapToState"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_j3vu4"]
+resource_name = "tornado_spin"
+length = 0.41667086
+loop_mode = 1
+step = 0.041666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [19, 20, 21, 22, 23]
+}
+
+[sub_resource type="Animation" id="Animation_6rbxq"]
+resource_name = "tornado"
+length = 0.33333752
+step = 0.041666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [18]
+}
+
+[sub_resource type="Animation" id="Animation_ridyd"]
+resource_name = "walk"
+length = 0.33333752
+loop_mode = 1
+step = 0.041666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 13]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f7vcp"]
+_data = {
+&"die": SubResource("Animation_f7vcp"),
+&"idle": SubResource("Animation_ua55g"),
+&"intro": SubResource("Animation_aquot"),
+&"slash": SubResource("Animation_chow1"),
+&"tornado_spin": SubResource("Animation_j3vu4"),
+&"tornado_start": SubResource("Animation_6rbxq"),
+&"walk": SubResource("Animation_ridyd")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ridyd"]
+size = Vector2(24, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ua55g"]
+size = Vector2(16, 36)
+
+[node name="Boss" type="CharacterBody2D" unique_id=1031252023]
+collision_layer = 8
+collision_priority = 3.0
+script = ExtResource("1_ridyd")
+
+[node name="Graphics" type="Sprite2D" parent="." unique_id=1333326404]
+position = Vector2(0, -24)
+texture = ExtResource("1_bwaly")
+hframes = 6
+vframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=103697482]
+libraries/ = SubResource("AnimationLibrary_ridyd")
+libraries/boss = SubResource("AnimationLibrary_f7vcp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=242857316]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_ridyd")
+
+[node name="TEMP Start Fight Timer" type="Timer" parent="." unique_id=223633990]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[node name="Colliders" type="Node2D" parent="." unique_id=479971618]
+
+[node name="Front_Detector" type="Area2D" parent="Colliders" unique_id=1107254072]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colliders/Front_Detector" unique_id=1742192443]
+position = Vector2(-7, -19)
+shape = SubResource("RectangleShape2D_ua55g")
+debug_color = Color(0.9015323, 0.1775963, 0.63321024, 0.41960785)
+
+[connection signal="timeout" from="TEMP Start Fight Timer" to="." method="_startFight"]
