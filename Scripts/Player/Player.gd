@@ -230,18 +230,30 @@ func _process_air_state(delta: float) -> void:
 	
 	# If we are against a wall and attempt to jump again, we can wall jump.
 	if Input.is_action_just_pressed("p1_jump"):
-		if walls_touching > 0:
-			if has_fox_mask:
-				can_double_jump = true
+		var touching_wall: bool = walls_touching > 0
+
+		var wall_side: int = -int(sign(velocity.x)) if sign(velocity.x) != 0 else int(sign(colliders.scale.x))
+		var move_x: int = sign(Input.get_axis("ui_left", "ui_right"))
+		var holding_into_wall: bool = touching_wall and (move_x != 0) and (move_x == wall_side)
+
+		var has_double_jump: bool = has_fox_mask
+		var double_jump_spent: bool = has_double_jump and (not bool(can_double_jump))
+
+		var should_wall_jump: bool = touching_wall and (holding_into_wall or double_jump_spent)
+		var should_double_jump: bool = (not should_wall_jump) and has_double_jump and (not double_jump_spent)
+
+		if should_wall_jump:
 			_start_jump()
 			colliders.scale.x *= -1
-			sprite.flip_h = false if colliders.scale.x > 0 else true
+			sprite.flip_h = colliders.scale.x <= 0
 			jump_direction_modifier = colliders.scale.x * RUN_SPEED
-		elif can_double_jump:
+			if has_double_jump:
+				can_double_jump = true
+		elif should_double_jump:
 			can_double_jump = false
 			_start_jump()
 		pass
-	
+			
 	
 	# Check for landing
 	if is_on_floor():
