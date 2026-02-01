@@ -82,12 +82,25 @@ func load_default_state():
 	
 	pass
 
+## Make sure any nodes connecting themselves as the gimmick also have the following function:
+##
+## func process_connected_player(delta: float, player: Player) function
+## func force_disconnect(player: Player)
+func set_gimmick(gimmick : Node2D):
+	if active_gimmick:
+		active_gimmick.force_disconnect(self)
+
+	active_gimmick = gimmick
+	
+	if gimmick != null:
+		_transition_to_state(State.GIMMICK)
 
 func _ready() -> void:
 	_calculate_physics()
 	
 	# Start in air state to handle initial ground detection
 	current_state = State.AIR
+	$MaskNode/MaskSprite.visible = has_fox_mask
 
 
 func _calculate_physics() -> void:
@@ -133,7 +146,7 @@ func _process_normal_state(delta: float) -> void:
 	if Input.is_action_just_pressed("p1_jump"):  # Spacebar
 		# Can only jump if either an object is unheld or the held object isn't heavy
 		if held_object == null or !held_object.is_heavy():
-			_start_jump()
+			start_jump()
 			_transition_to_state(State.AIR)
 			return
 	
@@ -233,8 +246,10 @@ func _process_air_state(delta: float) -> void:
 	if Input.is_action_just_pressed("p1_jump"):
 		var touching_wall := walls_touching > 0
 
-		var wall_side: int = -int(sign(velocity.x)) if sign(velocity.x) != 0 else int(sign(colliders.scale.x))
+		var wall_side: int = int(sign(colliders.scale.x))
+		print(wall_side)
 		var move_x: int = sign(Input.get_axis("ui_left", "ui_right"))
+		print(move_x)
 		var holding_into_wall := touching_wall and (move_x != 0) and (move_x == wall_side)
 
 		var double_jump_used := has_fox_mask and (not bool(can_double_jump))
@@ -243,7 +258,7 @@ func _process_air_state(delta: float) -> void:
 		var do_double_jump := (not do_wall_jump) and has_fox_mask and (not double_jump_used)
 
 		if do_wall_jump:
-			_start_jump()
+			start_jump()
 			colliders.scale.x *= -1
 			sprite.flip_h = colliders.scale.x <= 0
 			jump_direction_modifier = colliders.scale.x * RUN_SPEED
@@ -254,7 +269,7 @@ func _process_air_state(delta: float) -> void:
 
 		elif do_double_jump:
 			can_double_jump = false
-			_start_jump()
+			start_jump()
 			is_wall_jumping = false
 			
 	
@@ -291,6 +306,11 @@ func _process_dying_state(delta: float) -> void:
 	
 	pass
 
+func give_mask():
+	has_fox_mask = true
+	$MaskNode/MaskSprite.visible = true
+	can_double_jump = true
+	sfx[2].play()
 
 func _process_picking_up_state(delta: float) -> void:
 	# Player cannot move during pickup
@@ -346,7 +366,7 @@ func _handle_horizontal_input(_delta: float) -> void:
 		velocity.x = clampf(velocity.x, jump_direction_modifier, velocity.x)
 
 
-func _start_jump() -> void:
+func start_jump() -> void:
 	is_jumping = true
 	jump_time = 0.0
 	jump_button_released = false
@@ -365,6 +385,8 @@ func _transition_to_state(new_state: State) -> void:
 			is_wall_jumping = false
 			jump_button_released = false
 		State.GIMMICK:
+			if active_gimmick:
+				active_gimmick.force_disconnect()
 			pass
 		State.DYING:
 			pass
@@ -419,6 +441,8 @@ func get_current_state() -> State:
 
 
 func _on_grabbable_detector_body_entered(body: Node2D) -> void:
+	if body is not Grabbable:
+		return
 	# Might be more appropriate to maintain an array, but we're doing this fast and loose.
 	grabbable_object = body
 
@@ -441,7 +465,22 @@ func _on_wall_detector_body_exited(body: Node2D) -> void:
 		
 	walls_touching -= 1
 	pass # Replace with function body.
+
+
+func check_mount_ladder() -> bool:
+	var should_mount = false
+	if held_object:
+		return false
 	
+	if current_state != State.NORMAL and current_state != State.AIR:
+		return false
+	
+	if Input.is_action_pressed("ui_up"):
+		should_mount = true
+	elif Input.is_action_pressed("ui_down"):
+		should_mount = true
+		
+	return should_mount
 
 func kill_player():
 	var level : Level = LevelManager.get_active_level()

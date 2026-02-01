@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://k1eiirxujg2q" path="res://Sound/SFX/jump.ogg" id="3_0gd87"]
 [ext_resource type="Texture2D" uid="uid://cvvbnty2xux4" path="res://Graphics/Player/player_mask.png" id="3_2a4id"]
 [ext_resource type="AudioStream" uid="uid://ds0tydnt3qu1i" path="res://Sound/SFX/death.ogg" id="4_c7jvw"]
+[ext_resource type="AudioStream" uid="uid://qk6adrcjup3u" path="res://Sound/SFX/coin.wav" id="6_drum4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_41wu2"]
 size = Vector2(6, 15)
@@ -383,6 +384,9 @@ bus = &"Sound"
 
 [node name="DEATH" type="AudioStreamPlayer" parent="CharacterAudio" unique_id=32708971]
 stream = ExtResource("4_c7jvw")
+
+[node name="VICTORY" type="AudioStreamPlayer" parent="CharacterAudio" unique_id=1311969279]
+stream = ExtResource("6_drum4")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=1192103082]
 

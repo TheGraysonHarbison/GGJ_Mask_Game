@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bemqq4j18pryn" path="res://Entities/Grabbables/GrabSpring.tscn" id="7_orc0r"]
 [ext_resource type="PackedScene" uid="uid://dagk2ml4iocdu" path="res://Entities/CommonObjects/Checkpoint.tscn" id="9_ll3eg"]
 [ext_resource type="PackedScene" uid="uid://bgf7msbuexurx" path="res://Entities/AttackObjects/Spikes.tscn" id="10_h2fhx"]
+[ext_resource type="PackedScene" uid="uid://de11a78kf1b03" path="res://Entities/CommonObjects/Ladder.tscn" id="11_7fj4n"]
 
 [node name="MainLevel" type="Node2D" unique_id=303021948]
 script = ExtResource("1_d1qai")
@@ -29,6 +30,7 @@ tile_set = ExtResource("1_uy40e")
 
 [node name="MainCharacter" parent="." unique_id=1895139221 instance=ExtResource("2_orc0r")]
 position = Vector2(-173, 303)
+has_fox_mask = false
 
 [node name="Interactibles" type="Node2D" parent="." unique_id=144084320]
 
@@ -61,3 +63,11 @@ position = Vector2(-25, 211)
 [node name="Spikes2" parent="." unique_id=1713572882 instance=ExtResource("10_h2fhx")]
 position = Vector2(87, 211)
 x_tile_width = 1
+
+[node name="Ladder" parent="." unique_id=227426683 instance=ExtResource("11_7fj4n")]
+position = Vector2(-80, 211)
+height_tiles = 3
+
+[node name="Ladder2" parent="." unique_id=2086296664 instance=ExtResource("11_7fj4n")]
+position = Vector2(191, 211)
+height_tiles = 2

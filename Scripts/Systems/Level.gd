@@ -19,6 +19,9 @@ func _process(_delta : float) -> void:
 	if Input.is_action_just_released("p1_reset"):
 		player.kill_player()
 	
+	if Input.is_action_just_pressed("cheats_mask"):
+		player.give_mask()
+	
 	if player.global_position.y > kill_height:
 		player.global_position.y = kill_height - 2
 		player.kill_player()
