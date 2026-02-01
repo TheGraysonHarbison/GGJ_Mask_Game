@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bjfoxcjl0wsyy"]
+
+[ext_resource type="Texture2D" uid="uid://csw5tqewuvr6a" path="res://Graphics/Scratch/MC_FoxMask.png" id="1_5sxq5"]
+
+[sub_resource type="GDScript" id="GDScript_xrjem"]
+resource_name = "Mask"
+script/source = "extends Node2D
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is not Player:
+		return
+	var player: Player = body
+	player.give_mask()
+	queue_free()
+	
+	pass # Replace with function body.
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1wtu6"]
+radius = 3.0
+
+[node name="Mask" type="Node2D" unique_id=852790168]
+script = SubResource("GDScript_xrjem")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1484241463]
+texture = ExtResource("1_5sxq5")
+hframes = 5
+
+[node name="Area2D" type="Area2D" parent="." unique_id=305965869]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1726676827]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_1wtu6")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
