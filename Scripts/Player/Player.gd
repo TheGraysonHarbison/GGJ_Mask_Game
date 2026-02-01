@@ -62,6 +62,10 @@ var held_object: Grabbable = null
 
 var walls_touching := 0
 
+# The mask unlocks the double-jump -- this should be off by default normally
+@export var has_fox_mask := true
+var can_double_jump := 0
+
 
 var death_timer = 0
 
@@ -204,7 +208,7 @@ func _process_air_state(delta: float) -> void:
 		# Check if we've reached max jump duration
 		if jump_time >= JUMP_DURATION:
 			is_jumping = false
-	
+			
 	# Apply falling gravity
 	velocity.y += fall_gravity * delta
 	
@@ -223,10 +227,16 @@ func _process_air_state(delta: float) -> void:
 	# If we are against a wall and attempt to jump again, we can wall jump.
 	if Input.is_action_just_pressed("p1_jump"):
 		if walls_touching > 0:
+			if has_fox_mask:
+				can_double_jump = true
 			_start_jump()
 			colliders.scale.x *= -1
 			sprite.flip_h = false if colliders.scale.x > 0 else true
 			jump_direction_modifier = colliders.scale.x * RUN_SPEED
+		elif can_double_jump:
+			can_double_jump = false
+			_start_jump()
+		pass
 	
 	
 	# Check for landing
@@ -343,6 +353,8 @@ func _transition_to_state(new_state: State) -> void:
 	match new_state:
 		State.NORMAL:
 			jump_direction_modifier = 0.0
+			if has_fox_mask:
+				can_double_jump = true
 			pass
 		State.AIR:
 			pass

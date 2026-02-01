@@ -244,6 +244,8 @@ texture = ExtResource("2_0gd87")
 hframes = 9
 vframes = 2
 
+[node name="MaskSprite" type="Sprite2D" parent="." unique_id=858318908]
+
 [node name="CharacterAnimator" type="AnimationPlayer" parent="." unique_id=17821594]
 libraries/ = SubResource("AnimationLibrary_drum4")
 
