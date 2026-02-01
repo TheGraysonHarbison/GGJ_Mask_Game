@@ -386,7 +386,7 @@ func _transition_to_state(new_state: State) -> void:
 			jump_button_released = false
 		State.GIMMICK:
 			if active_gimmick:
-				active_gimmick.force_disconnect()
+				active_gimmick.force_disconnect(self)
 			pass
 		State.DYING:
 			pass
