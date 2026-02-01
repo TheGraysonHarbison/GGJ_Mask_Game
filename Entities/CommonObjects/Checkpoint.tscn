@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://dagk2ml4iocdu"]
+
+[ext_resource type="Script" uid="uid://c8dcykduhldlf" path="res://Scripts/Objects/checkpoint.gd" id="1_kjjii"]
+[ext_resource type="Texture2D" uid="uid://2rg6e8cgkd75" path="res://Graphics/Objects/checkpoint.png" id="1_vi34b"]
+[ext_resource type="AudioStream" uid="uid://qk6adrcjup3u" path="res://Sound/SFX/coin.wav" id="3_406bf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwypl"]
+atlas = ExtResource("1_vi34b")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vi34b"]
+atlas = ExtResource("1_vi34b")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjjii"]
+atlas = ExtResource("1_vi34b")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_406bf"]
+atlas = ExtResource("1_vi34b")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3bfm"]
+atlas = ExtResource("1_vi34b")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gwypl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gwypl")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vi34b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjjii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_406bf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3bfm")
+}],
+"loop": false,
+"name": &"unfurl",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_61d33"]
+size = Vector2(4.5, 30)
+
+[node name="Checkpoint" type="Node2D" unique_id=127947390]
+script = ExtResource("1_kjjii")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=711331022]
+position = Vector2(1, -16)
+sprite_frames = SubResource("SpriteFrames_gwypl")
+animation = &"idle"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1774184494]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1920471759]
+position = Vector2(-0.25, -15)
+shape = SubResource("RectangleShape2D_61d33")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1725663079]
+stream = ExtResource("3_406bf")
+bus = &"Sound"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

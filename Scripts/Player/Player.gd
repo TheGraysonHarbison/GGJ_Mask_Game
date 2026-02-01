@@ -13,6 +13,7 @@ enum State {
 	NORMAL,
 	AIR,
 	GIMMICK,
+	DYING,
 }
 
 var current_state: State = State.AIR
@@ -62,6 +63,19 @@ var held_object: Grabbable = null
 var walls_touching := 0
 
 
+var death_timer = 0
+
+@onready var original_position = global_position
+func set_default_state():
+	original_position = global_position
+	pass
+func load_default_state():
+	global_position = original_position
+	current_state = State.AIR
+	
+	pass
+
+
 func _ready() -> void:
 	_calculate_physics()
 	
@@ -89,6 +103,8 @@ func _physics_process(delta: float) -> void:
 			_process_air_state(delta)
 		State.GIMMICK:
 			_process_gimmick_state(delta)
+		State.DYING:
+			_process_dying_state(delta)
 	
 	# Apply movement
 	move_and_slide()
@@ -234,6 +250,16 @@ func _process_gimmick_state(delta: float) -> void:
 		active_gimmick = null
 		_transition_to_state(State.AIR)
 
+func _process_dying_state(delta: float) -> void:
+	velocity = Vector2(0,0)
+	death_timer += delta
+	
+	if death_timer >= 2:
+		LevelManager.get_active_level().reset_to_spawn()
+		LevelManager.get_active_level().resume_music()
+	
+	pass
+
 
 func _process_picking_up_state(delta: float) -> void:
 	# Player cannot move during pickup
@@ -308,6 +334,8 @@ func _transition_to_state(new_state: State) -> void:
 			jump_button_released = false
 		State.GIMMICK:
 			pass
+		State.DYING:
+			pass
 	
 	# Enter new state
 	current_state = new_state
@@ -319,6 +347,10 @@ func _transition_to_state(new_state: State) -> void:
 		State.AIR:
 			pass
 		State.GIMMICK:
+			pass
+		State.DYING:
+			animator.play(&"dying")
+			death_timer = 0.0
 			pass
 
 
@@ -375,3 +407,11 @@ func _on_wall_detector_body_exited(body: Node2D) -> void:
 		
 	walls_touching -= 1
 	pass # Replace with function body.
+	
+
+func kill_player():
+	var level : Level = LevelManager.get_active_level()
+	
+	level.pause_music()
+	_transition_to_state(State.DYING)
+	pass

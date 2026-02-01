@@ -31,5 +31,6 @@ func _startLoadingScene(levelToLoad : Levels):
 		Levels.First:
 			get_tree().change_scene_to_file("res://Scene/main_level.tscn")
 	
-	
-	pass
+
+func get_active_level():
+	return get_tree().current_scene

@@ -11,6 +11,13 @@ func _on_body_entered(body: Node) -> void:
 	if (armed):
 		print("explode!")
 		explode()
+	
+func load_default_state():
+	super()
+	visible = true
+	armed = false
+	set_process(true)
+	pass
 
 func explode():
 	# Create an instance of the explosion
@@ -22,5 +29,7 @@ func explode():
 	# Add the explosion to the scene tree
 	get_parent().add_child(explosion)
 	
-	# Remove this object from the scene
-	queue_free()
+	# Hide this object from the scene
+	visible = false
+	set_process(false)
+	global_position = Vector2(-20000,-20000)

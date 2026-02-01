@@ -23,6 +23,15 @@ func is_heavy() -> bool:
 func throw(impulse: Vector2):
 	ungrab()
 	apply_impulse(impulse, Vector2(0, 0))
+	
+@onready var original_position: Vector2 = global_position
+func set_default_state():
+	original_position = global_position
+func load_default_state():
+	print("loading default state")
+	grab()
+	global_transform.origin = original_position
+	ungrab()
 
 ## Enables collisions long enough to check for them and then returns collisions to the prior state
 ## will false if there is anything overlapping while collisions are enabled and true otherwise.
