@@ -14,6 +14,7 @@
 stream = ExtResource("5_h2fhx")
 volume_db = -2.0
 autoplay = true
+bus = &"Music"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=163939619]
 position = Vector2(-185, -285)

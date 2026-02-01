@@ -183,6 +183,7 @@ libraries/ = SubResource("AnimationLibrary_drum4")
 
 [node name="JUMP" type="AudioStreamPlayer" parent="CharacterAudio" unique_id=202211855]
 stream = ExtResource("3_0gd87")
+bus = &"Sound"
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=1192103082]
 
