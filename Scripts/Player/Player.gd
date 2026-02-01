@@ -49,6 +49,7 @@ var facing_direction: int = 1  # 1 for right, -1 for left
 # Jump state
 var jump_time: float = 0.0
 var is_jumping: bool = false
+var is_wall_jumping: bool = false
 var jump_button_released: bool = false
 
 # Double tap detection
@@ -230,18 +231,32 @@ func _process_air_state(delta: float) -> void:
 	
 	# If we are against a wall and attempt to jump again, we can wall jump.
 	if Input.is_action_just_pressed("p1_jump"):
-		if walls_touching > 0:
-			if has_fox_mask:
-				can_double_jump = true
+		var touching_wall := walls_touching > 0
+
+		var wall_side: int = -int(sign(velocity.x)) if sign(velocity.x) != 0 else int(sign(colliders.scale.x))
+		var move_x: int = sign(Input.get_axis("ui_left", "ui_right"))
+		var holding_into_wall := touching_wall and (move_x != 0) and (move_x == wall_side)
+
+		var double_jump_used := has_fox_mask and (not bool(can_double_jump))
+
+		var do_wall_jump := touching_wall and (is_wall_jumping or holding_into_wall or double_jump_used)
+		var do_double_jump := (not do_wall_jump) and has_fox_mask and (not double_jump_used)
+
+		if do_wall_jump:
 			_start_jump()
 			colliders.scale.x *= -1
-			sprite.flip_h = false if colliders.scale.x > 0 else true
+			sprite.flip_h = colliders.scale.x <= 0
 			jump_direction_modifier = colliders.scale.x * RUN_SPEED
-		elif can_double_jump:
+
+			is_wall_jumping = true
+			if has_fox_mask:
+				can_double_jump = true
+
+		elif do_double_jump:
 			can_double_jump = false
 			_start_jump()
-		pass
-	
+			is_wall_jumping = false
+			
 	
 	# Check for landing
 	if is_on_floor():
@@ -347,6 +362,7 @@ func _transition_to_state(new_state: State) -> void:
 			pass
 		State.AIR:
 			is_jumping = false
+			is_wall_jumping = false
 			jump_button_released = false
 		State.GIMMICK:
 			pass
