@@ -22,7 +22,6 @@ func load_default_state():
 func explode():
 	# Create an instance of the explosion
 	var explosion = explosion_scene.instantiate()
-	
 	# Position the explosion at this object's location
 	explosion.global_position = global_position - Vector2(0, 8)
 	

@@ -81,52 +81,51 @@ position = Vector2(-204, -22)
 has_fox_mask = false
 
 [node name="Interactibles" type="Node2D" parent="." unique_id=144084320]
-position = Vector2(20, -339)
 
 [node name="Barrel3" parent="Interactibles" unique_id=1967709032 instance=ExtResource("7_orc0r")]
-position = Vector2(111, 320)
+position = Vector2(120, -20)
 
 [node name="Spring" parent="Interactibles" unique_id=1961445991 instance=ExtResource("6_7fj4n")]
-position = Vector2(25, 324)
+position = Vector2(34, -16)
 
 [node name="Spring2" parent="Interactibles" unique_id=782654083 instance=ExtResource("6_7fj4n")]
-position = Vector2(10, 52)
+position = Vector2(19, -288)
 
 [node name="Barrel" parent="Interactibles" unique_id=1561141574 instance=ExtResource("3_d1qai")]
-position = Vector2(64, 320)
+position = Vector2(73, -20)
 heavy = true
 
 [node name="Pot" parent="Interactibles" unique_id=152510318 instance=ExtResource("4_ll3eg")]
-position = Vector2(-9, 323)
+position = Vector2(0, -17)
 
 [node name="Barrel2" parent="Interactibles" unique_id=1903288990 instance=ExtResource("3_d1qai")]
-position = Vector2(-71, 317)
+position = Vector2(-62, -23)
 heavy = true
 
-[node name="Checkpoint" parent="." unique_id=127947390 instance=ExtResource("9_ll3eg")]
+[node name="Checkpoint" parent="Interactibles" unique_id=127947390 instance=ExtResource("9_ll3eg")]
 position = Vector2(-151, -288)
 
-[node name="Spikes" parent="." unique_id=159938126 instance=ExtResource("10_h2fhx")]
+[node name="Spikes" parent="Interactibles" unique_id=159938126 instance=ExtResource("10_h2fhx")]
 position = Vector2(0, -128)
 
-[node name="Spikes2" parent="." unique_id=1713572882 instance=ExtResource("10_h2fhx")]
+[node name="Spikes2" parent="Interactibles" unique_id=1713572882 instance=ExtResource("10_h2fhx")]
 position = Vector2(111, -128)
 x_tile_width = 1
 
-[node name="Ladder" parent="." unique_id=227426683 instance=ExtResource("11_7fj4n")]
+[node name="Ladder" parent="Interactibles" unique_id=227426683 instance=ExtResource("11_7fj4n")]
 position = Vector2(-111, -128)
 height_tiles = 6
 
-[node name="Ladder2" parent="." unique_id=2086296664 instance=ExtResource("11_7fj4n")]
+[node name="Ladder2" parent="Interactibles" unique_id=2086296664 instance=ExtResource("11_7fj4n")]
 position = Vector2(215, -128)
 height_tiles = 2
 
-[node name="LadderAnimator" type="AnimationPlayer" parent="." unique_id=815949782]
+[node name="LadderAnimator" type="AnimationPlayer" parent="Interactibles" unique_id=815949782]
 root_node = NodePath("Ladder3")
 libraries/ = SubResource("AnimationLibrary_ua6o8")
 script = SubResource("GDScript_7fj4n")
 
-[node name="Ladder3" parent="LadderAnimator" unique_id=1018998387 instance=ExtResource("11_7fj4n")]
+[node name="Ladder3" parent="Interactibles/LadderAnimator" unique_id=1018998387 instance=ExtResource("11_7fj4n")]
 position = Vector2(-83, -224)
 height_tiles = 3
 

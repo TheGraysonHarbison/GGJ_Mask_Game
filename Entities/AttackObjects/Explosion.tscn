@@ -3,6 +3,15 @@
 [ext_resource type="Texture2D" uid="uid://s75yxca673xj" path="res://Graphics/Effects/explosion.png" id="1_shuxk"]
 [ext_resource type="AudioStream" uid="uid://crxh3r2tu6idb" path="res://Sound/SFX/explosion.wav" id="2_cb4hw"]
 
+[sub_resource type="GDScript" id="GDScript_cb4hw"]
+resource_name = "finish_handler"
+script/source = "extends Node2D
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	queue_free()
+"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_cb4hw"]
 atlas = ExtResource("1_shuxk")
 region = Rect2(0, 0, 48, 48)
@@ -64,10 +73,13 @@ animations = [{
 radius = 16.0
 
 [node name="Explosion" type="Node2D" unique_id=1782255459]
+script = SubResource("GDScript_cb4hw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1744091777]
 sprite_frames = SubResource("SpriteFrames_rqei7")
 autoplay = "default"
+frame = 6
+frame_progress = 1.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=354399101]
 stream = ExtResource("2_cb4hw")
@@ -75,8 +87,10 @@ autoplay = true
 
 [node name="Area2D" type="Area2D" parent="." unique_id=189796587]
 collision_layer = 4
-collision_mask = 4
+collision_mask = 0
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=220676721]
 shape = SubResource("CircleShape2D_8ruut")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

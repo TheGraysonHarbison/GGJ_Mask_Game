@@ -352,6 +352,9 @@ size = Vector2(7, 13)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c7jvw"]
 size = Vector2(2, 4)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_drum4"]
+size = Vector2(2, 8)
+
 [node name="Player" type="CharacterBody2D" unique_id=332226137]
 script = ExtResource("1_1iada")
 
@@ -411,7 +414,17 @@ position = Vector2(4, -5)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colliders/WallDetector" unique_id=1928971928]
 shape = SubResource("RectangleShape2D_c7jvw")
 
+[node name="HurtBox" type="Area2D" parent="Colliders" unique_id=1052453043]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colliders/HurtBox" unique_id=569875968]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_drum4")
+debug_color = Color(0.8090717, 0.41344455, 0, 0.41960785)
+
 [connection signal="body_entered" from="Colliders/GrabbableDetector" to="." method="_on_grabbable_detector_body_entered"]
 [connection signal="body_exited" from="Colliders/GrabbableDetector" to="." method="_on_grabbable_detector_body_exited"]
 [connection signal="body_entered" from="Colliders/WallDetector" to="." method="_on_wall_detector_body_entered"]
 [connection signal="body_exited" from="Colliders/WallDetector" to="." method="_on_wall_detector_body_exited"]
+[connection signal="area_entered" from="Colliders/HurtBox" to="." method="kill_player" unbinds=1]
