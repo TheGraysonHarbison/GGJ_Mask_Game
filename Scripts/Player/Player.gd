@@ -30,7 +30,7 @@ const DOUBLE_TAP_TIME: float = 0.3  # Time window for double tap detection
 const JUMP_DURATION: float = 0.25  # Maximum jump button hold time
 const JUMP_HEIGHT: float = 24.0  # Height when holding jump for full duration
 const FALL_TIME: float = 0.25  # Time to fall 32 pixels
-const TERMINAL_VELOCITY: float = 12.0 * TILE_SIZE
+const TERMINAL_VELOCITY: float = 24.0 * TILE_SIZE
 
 # Calculated physics values
 var jump_velocity: float
@@ -210,7 +210,7 @@ func _process_air_state(delta: float) -> void:
 			_start_jump()
 			colliders.scale.x *= -1
 			sprite.flip_h = false if colliders.scale.x > 0 else true
-			jump_direction_modifier = colliders.scale.x * WALK_SPEED
+			jump_direction_modifier = colliders.scale.x * RUN_SPEED
 	
 	
 	# Check for landing
