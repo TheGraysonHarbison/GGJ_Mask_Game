@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ddfwg37hyv2uo" path="res://Entities/Gimmicks/Spring.tscn" id="6_7fj4n"]
 [ext_resource type="PackedScene" uid="uid://bemqq4j18pryn" path="res://Entities/Grabbables/GrabSpring.tscn" id="7_orc0r"]
 [ext_resource type="PackedScene" uid="uid://dagk2ml4iocdu" path="res://Entities/CommonObjects/Checkpoint.tscn" id="9_ll3eg"]
+[ext_resource type="PackedScene" uid="uid://bgf7msbuexurx" path="res://Entities/AttackObjects/Spikes.tscn" id="10_h2fhx"]
 
 [node name="MainLevel" type="Node2D" unique_id=303021948]
 script = ExtResource("1_d1qai")
@@ -53,3 +54,11 @@ heavy = true
 
 [node name="Checkpoint" parent="." unique_id=127947390 instance=ExtResource("9_ll3eg")]
 position = Vector2(-171, 51)
+
+[node name="Spikes" parent="." unique_id=159938126 instance=ExtResource("10_h2fhx")]
+position = Vector2(-61, 211)
+x_tile_width = 1
+
+[node name="Spikes2" parent="." unique_id=1713572882 instance=ExtResource("10_h2fhx")]
+position = Vector2(22, 211)
+x_tile_width = 1

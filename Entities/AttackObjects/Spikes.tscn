@@ -1,5 +1,46 @@
 [gd_scene format=3 uid="uid://bgf7msbuexurx"]
 
+[ext_resource type="Texture2D" uid="uid://dvt3vynxrmvvm" path="res://Graphics/Objects/spikes.png" id="1_bbxgr"]
+[ext_resource type="Script" uid="uid://65qr2nvuc8f8" path="res://Scripts/Objects/spikes.gd" id="1_y5ak5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y5ak5"]
+size = Vector2(27, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_at3x7"]
+size = Vector2(4, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exf4j"]
+size = Vector2(4, 6)
+
 [node name="Spikes" type="Node2D" unique_id=159938126]
+script = ExtResource("1_y5ak5")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1931479137]
+texture_repeat = 2
+position = Vector2(0, -16)
+texture = ExtResource("1_bbxgr")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 16)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1114625949]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1148378220]
+position = Vector2(15.5, -4)
+shape = SubResource("RectangleShape2D_y5ak5")
+
+[node name="LeftWall" type="StaticBody2D" parent="." unique_id=1094952779]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall" unique_id=1919829141]
+position = Vector2(2, -3)
+shape = SubResource("RectangleShape2D_at3x7")
+
+[node name="RightWall" type="StaticBody2D" parent="." unique_id=836585081]
+position = Vector2(27, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall" unique_id=1957228264]
+position = Vector2(2, -3)
+shape = SubResource("RectangleShape2D_exf4j")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
