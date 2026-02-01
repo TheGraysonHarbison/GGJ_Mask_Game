@@ -1,0 +1,268 @@
+[gd_scene format=3 uid="uid://b344c1wjc8el6"]
+
+[ext_resource type="Script" uid="uid://bwovlxvfpus7b" path="res://Scripts/UI/MainMenuUI.gd" id="1_eiy7p"]
+[ext_resource type="FontFile" uid="uid://cimac5yf20ing" path="res://Fonts/Jersey10-Regular.ttf" id="1_i26rj"]
+
+[node name="MainMenu" type="Node2D" unique_id=342851952]
+
+[node name="MenuGraphics" type="Control" parent="." unique_id=761133793 node_paths=PackedStringArray("MainMenuGroup", "SettingsMenuGroup", "CreditsMenuGroup", "musicVolSilder", "soundVolSilder")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 360.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_eiy7p")
+MainMenuGroup = NodePath("Main")
+SettingsMenuGroup = NodePath("Settings")
+CreditsMenuGroup = NodePath("Credits")
+musicVolSilder = NodePath("Settings/Panel/VBoxContainer/SettingsUI/Music/MusicSlider")
+soundVolSilder = NodePath("Settings/Panel/VBoxContainer/SettingsUI/Sound/SoundSlider")
+metadata/_edit_use_anchors_ = true
+
+[node name="Main" type="MarginContainer" parent="MenuGraphics" unique_id=1847371565]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="MenuGraphics/Main" unique_id=889803875]
+layout_mode = 2
+
+[node name="CreditsBtn" type="Button" parent="MenuGraphics/Main/Panel" unique_id=668100735]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = -55.0
+offset_right = 111.0
+offset_bottom = -12.0
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_i26rj")
+theme_override_font_sizes/font_size = 32
+text = "Credits"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuGraphics/Main/Panel" unique_id=644810153]
+custom_minimum_size = Vector2(200, 250)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.5
+offset_top = -9.0
+offset_right = 49.5
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="MenuGraphics/Main/Panel/VBoxContainer" unique_id=972571812]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_i26rj")
+theme_override_font_sizes/font_size = 48
+text = "Kabuki Mask Game"
+horizontal_alignment = 1
+
+[node name="PlayBtn" type="Button" parent="MenuGraphics/Main/Panel/VBoxContainer" unique_id=53978383]
+custom_minimum_size = Vector2(170, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_i26rj")
+theme_override_font_sizes/font_size = 32
+text = "Play"
+
+[node name="SettingsBtn" type="Button" parent="MenuGraphics/Main/Panel/VBoxContainer" unique_id=58690851]
+custom_minimum_size = Vector2(170, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_i26rj")
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+
+[node name="QuitBtn" type="Button" parent="MenuGraphics/Main/Panel/VBoxContainer" unique_id=118964475]
+custom_minimum_size = Vector2(170, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_i26rj")
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+
+[node name="Settings" type="MarginContainer" parent="MenuGraphics" unique_id=1074774092]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="MenuGraphics/Settings" unique_id=2005572386]
+custom_minimum_size = Vector2(350, 280)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuGraphics/Settings/Panel" unique_id=861200618]
+custom_minimum_size = Vector2(200, 250)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingsUI" type="VBoxContainer" parent="MenuGraphics/Settings/Panel/VBoxContainer" unique_id=926244972]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TitleLabel" type="Label" parent="MenuGraphics/Settings/Panel/VBoxContainer/SettingsUI" unique_id=1887222429]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_i26rj")
+theme_override_font_sizes/font_size = 48
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="Music" type="HBoxContainer" parent="MenuGraphics/Settings/Panel/VBoxContainer/SettingsUI" unique_id=218250147]
+custom_minimum_size = Vector2(21.87, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Label" type="Label" parent="MenuGraphics/Settings/Panel/VBoxContainer/SettingsUI/Music" unique_id=331494230]
+custom_minimum_size = Vector2(95, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_i26rj")
+theme_override_font_sizes/font_size = 32
+text = "Music: "
+horizontal_alignment = 2
+
+[node name="MusicSlider" type="HSlider" parent="MenuGraphics/Settings/Panel/VBoxContainer/SettingsUI/Music" unique_id=1541146083]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="Sound" type="HBoxContainer" parent="MenuGraphics/Settings/Panel/VBoxContainer/SettingsUI" unique_id=470561551]
+custom_minimum_size = Vector2(21.87, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Label" type="Label" parent="MenuGraphics/Settings/Panel/VBoxContainer/SettingsUI/Sound" unique_id=477380237]
+custom_minimum_size = Vector2(95, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_i26rj")
+theme_override_font_sizes/font_size = 32
+text = "Sound: "
+horizontal_alignment = 2
+
+[node name="SoundSlider" type="HSlider" parent="MenuGraphics/Settings/Panel/VBoxContainer/SettingsUI/Sound" unique_id=1596858276]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="Buttons" type="HBoxContainer" parent="MenuGraphics/Settings/Panel/VBoxContainer" unique_id=1275599174]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuGraphics/Settings/Panel/VBoxContainer/Buttons" unique_id=1240618967]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_bottom = 10
+
+[node name="BackButton" type="Button" parent="MenuGraphics/Settings/Panel/VBoxContainer/Buttons/MarginContainer" unique_id=1429708750]
+custom_minimum_size = Vector2(170, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("1_i26rj")
+theme_override_font_sizes/font_size = 32
+text = "Back"
+
+[node name="Credits" type="MarginContainer" parent="MenuGraphics" unique_id=1159648129]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="MenuGraphics/Credits" unique_id=905949597]
+custom_minimum_size = Vector2(350, 280)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuGraphics/Credits/Panel" unique_id=436427883]
+custom_minimum_size = Vector2(200, 250)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="MenuGraphics/Credits/Panel/VBoxContainer" unique_id=2108755581]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_i26rj")
+theme_override_font_sizes/font_size = 48
+text = "Credits"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuGraphics/Credits/Panel/VBoxContainer" unique_id=1892941118]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="Credits" type="Label" parent="MenuGraphics/Credits/Panel/VBoxContainer/MarginContainer" unique_id=1619717175]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_i26rj")
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud "
+autowrap_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="MenuGraphics/Credits/Panel/VBoxContainer" unique_id=467046815]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuGraphics/Credits/Panel/VBoxContainer/Buttons" unique_id=1536804552]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_bottom = 10
+
+[node name="BackButton" type="Button" parent="MenuGraphics/Credits/Panel/VBoxContainer/Buttons/MarginContainer" unique_id=1962454228]
+custom_minimum_size = Vector2(170, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("1_i26rj")
+theme_override_font_sizes/font_size = 32
+text = "Back"
+
+[connection signal="pressed" from="MenuGraphics/Main/Panel/CreditsBtn" to="MenuGraphics" method="_setMenuState" binds= [2]]
+[connection signal="pressed" from="MenuGraphics/Main/Panel/VBoxContainer/PlayBtn" to="MenuGraphics" method="_playGame"]
+[connection signal="pressed" from="MenuGraphics/Main/Panel/VBoxContainer/SettingsBtn" to="MenuGraphics" method="_setMenuState" binds= [1]]
+[connection signal="pressed" from="MenuGraphics/Main/Panel/VBoxContainer/QuitBtn" to="MenuGraphics" method="_quitGame"]
+[connection signal="value_changed" from="MenuGraphics/Settings/Panel/VBoxContainer/SettingsUI/Music/MusicSlider" to="MenuGraphics" method="_setMusicVolume"]
+[connection signal="value_changed" from="MenuGraphics/Settings/Panel/VBoxContainer/SettingsUI/Sound/SoundSlider" to="MenuGraphics" method="_setSoundVolume"]
+[connection signal="pressed" from="MenuGraphics/Settings/Panel/VBoxContainer/Buttons/MarginContainer/BackButton" to="MenuGraphics" method="_setMenuState" binds= [0]]
+[connection signal="pressed" from="MenuGraphics/Credits/Panel/VBoxContainer/Buttons/MarginContainer/BackButton" to="MenuGraphics" method="_setMenuState" binds= [0]]
