@@ -389,6 +389,9 @@ stream = ExtResource("4_c7jvw")
 stream = ExtResource("6_drum4")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=1192103082]
+limit_left = -320
+limit_right = 320
+limit_bottom = 0
 
 [node name="Colliders" type="Node2D" parent="." unique_id=1364503621]
 
