@@ -20,6 +20,11 @@ config/icon="res://icon.svg"
 
 buses/default_bus_layout="uid://l6sun68nth14"
 
+[autoload]
+
+AudioManager="*uid://db5qklrwjggp4"
+LevelManager="*uid://bfw4u3gn8uqox"
+
 [display]
 
 window/size/viewport_width=640

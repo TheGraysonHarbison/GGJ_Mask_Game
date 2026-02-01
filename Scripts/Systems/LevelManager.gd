@@ -1,5 +1,4 @@
 extends Node
-
 # Levels To Load
 #@onready var main_menu_level : PackedScene = preload("res://MainMenu.tscn")
 #@onready var first_level : PackedScene = preload("res://Tilemap/main_level.tscn")
@@ -30,6 +29,7 @@ func _startLoadingScene(levelToLoad : Levels):
 		Levels.MainMenu:
 			get_tree().change_scene_to_file("res://MainMenu.tscn")
 		Levels.First:
-			get_tree().change_scene_to_file("res://Tilemap/main_level.tscn")
+			get_tree().change_scene_to_file("res://Scene/main_level.tscn")
+	
 	
 	pass
