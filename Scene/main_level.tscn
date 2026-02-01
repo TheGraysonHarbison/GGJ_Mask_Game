@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://de11a78kf1b03" path="res://Entities/CommonObjects/Ladder.tscn" id="11_7fj4n"]
 [ext_resource type="Texture2D" uid="uid://b2u30vw634w8i" path="res://Graphics/Objects/rope.png" id="12_q5qfh"]
 [ext_resource type="PackedScene" uid="uid://bjfoxcjl0wsyy" path="res://Entities/CommonObjects/Mask.tscn" id="12_yx57t"]
-[ext_resource type="PackedScene" uid="uid://b6ysvjcdcj6vv" path="res://Entities/CommonObjects/DestructibleWall.tscn" id="13_ua6o8"]
+[ext_resource type="PackedScene" uid="uid://7uyf5claf714" path="res://Entities/CommonObjects/DestructibleWall.tscn" id="13_ua6o8"]
 [ext_resource type="PackedScene" uid="uid://diauw22k8wfft" path="res://Entities/Enemies/MidBoss.tscn" id="15_1ge5r"]
 [ext_resource type="PackedScene" uid="uid://cfwwb7w7k1bf4" path="res://Entities/Enemies/Boss.tscn" id="16_efwur"]
 [ext_resource type="PackedScene" uid="uid://t2cdc5gfuevc" path="res://DoorToBossArena.tscn" id="17_qgfg0"]
@@ -94,7 +94,7 @@ tile_set = ExtResource("1_uy40e")
 
 [node name="MainCharacter" parent="." unique_id=1895139221 instance=ExtResource("2_orc0r")]
 z_index = 120
-position = Vector2(48, -650)
+position = Vector2(-212, -40)
 has_fox_mask = false
 
 [node name="Interactibles" type="Node2D" parent="." unique_id=144084320]
