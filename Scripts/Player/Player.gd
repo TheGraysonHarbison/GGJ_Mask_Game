@@ -188,7 +188,7 @@ func _process_normal_state(delta: float) -> void:
 	# grab it.
 	if Input.is_action_just_pressed("p1_use"):
 		if grabbable_object and held_object == null:
-			print("grab it!")
+			print("grabed object!")
 			held_object = grabbable_object
 			held_object.grab()
 			grabbable_object = null
@@ -197,7 +197,7 @@ func _process_normal_state(delta: float) -> void:
 
 func throw_object(unsafe: bool = false) -> void:
 	if not unsafe and held_object.test_overlapping():
-		print("warning -- overlapping bodies")
+		print("prevented throw (proximity to wall)")
 		return
 
 	var scaler: Vector2 = Vector2(1 * colliders.scale.x, 1)
@@ -247,9 +247,7 @@ func _process_air_state(delta: float) -> void:
 		var touching_wall := walls_touching > 0
 
 		var wall_side: int = int(sign(colliders.scale.x))
-		print(wall_side)
 		var move_x: int = sign(Input.get_axis("ui_left", "ui_right"))
-		print(move_x)
 		var holding_into_wall := touching_wall and (move_x != 0) and (move_x == wall_side)
 
 		var double_jump_used := has_fox_mask and (not bool(can_double_jump))

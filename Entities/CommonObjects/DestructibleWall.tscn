@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://b6ysvjcdcj6vv"]
+
+[ext_resource type="Texture2D" uid="uid://7d5dspj31ova" path="res://Graphics/Scratch/Big Crate.png" id="1_botoo"]
+
+[sub_resource type="GDScript" id="GDScript_botoo"]
+resource_name = "boom"
+script/source = "extends CharacterBody2D
+var do_explode = false
+var exploded = false
+
+func _process(delta: float) -> void:
+	if do_explode and !exploded:
+		explode()
+		
+	if $DestroyedTL.position.y > 1000:
+		queue_free()
+
+	pass
+
+func explode() -> void:
+	if exploded:
+		return
+	
+	$DestroyedTL.freeze = false
+	$DestroyedTR.freeze = false
+	$DestroyedBL.freeze = false
+	$DestroyedBR.freeze = false
+	$CollisionShape2D.disabled = true
+	print(\"explosion triggered\")
+	
+	exploded = true
+
+
+func _on_hurt_box_area_entered(area: Area2D) -> void:
+	# For some reason exploding the box directly out of this function doesn't work well, so I'm
+	# just raising a flag and letting it explode itself.
+	do_explode = true
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1fjyr"]
+size = Vector2(24, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6gkc"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_drum4"]
+size = Vector2(24, 24)
+
+[node name="DestructibleWall" type="CharacterBody2D" unique_id=1019327353]
+position = Vector2(167, 112)
+collision_mask = 4
+script = SubResource("GDScript_botoo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=542604799]
+visible = false
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_1fjyr")
+
+[node name="DestroyedTL" type="RigidBody2D" parent="." unique_id=2029116199]
+collision_layer = 0
+collision_mask = 0
+freeze = true
+linear_velocity = Vector2(-200, -200)
+angular_velocity = -1.3962634
+
+[node name="Sprite2D" type="Sprite2D" parent="DestroyedTL" unique_id=289835897]
+position = Vector2(-6, -18)
+texture = ExtResource("1_botoo")
+region_enabled = true
+region_rect = Rect2(0, 0, 12, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyedTL" unique_id=1066101139]
+visible = false
+position = Vector2(-6, -18)
+shape = SubResource("RectangleShape2D_e6gkc")
+disabled = true
+
+[node name="DestroyedTR" type="RigidBody2D" parent="." unique_id=1118325041]
+collision_layer = 0
+collision_mask = 0
+freeze = true
+linear_velocity = Vector2(200, -200)
+angular_velocity = 1.3962634
+
+[node name="Sprite2D" type="Sprite2D" parent="DestroyedTR" unique_id=1798173031]
+position = Vector2(6, -18)
+texture = ExtResource("1_botoo")
+region_enabled = true
+region_rect = Rect2(12, 0, 12, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyedTR" unique_id=408418323]
+visible = false
+position = Vector2(6, -18)
+shape = SubResource("RectangleShape2D_e6gkc")
+disabled = true
+
+[node name="DestroyedBL" type="RigidBody2D" parent="." unique_id=54065088]
+collision_layer = 0
+collision_mask = 0
+freeze = true
+linear_velocity = Vector2(-240, -140)
+angular_velocity = -2.0943952
+
+[node name="Sprite2D" type="Sprite2D" parent="DestroyedBL" unique_id=2064061036]
+position = Vector2(-6, -6)
+texture = ExtResource("1_botoo")
+region_enabled = true
+region_rect = Rect2(0, 12, 12, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyedBL" unique_id=1311519477]
+visible = false
+position = Vector2(-6, -6)
+shape = SubResource("RectangleShape2D_e6gkc")
+disabled = true
+
+[node name="DestroyedBR" type="RigidBody2D" parent="." unique_id=379405255]
+collision_layer = 0
+collision_mask = 0
+freeze = true
+linear_velocity = Vector2(240, -140)
+angular_velocity = 2.0943952
+
+[node name="Sprite2D" type="Sprite2D" parent="DestroyedBR" unique_id=740943333]
+position = Vector2(6, -6)
+texture = ExtResource("1_botoo")
+region_enabled = true
+region_rect = Rect2(12, 12, 12, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyedBR" unique_id=1497617745]
+visible = false
+position = Vector2(6, -6)
+shape = SubResource("RectangleShape2D_e6gkc")
+disabled = true
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=37232006]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1637299535]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_drum4")
+debug_color = Color(0.8090717, 0.41344455, 0, 0.41960785)
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]

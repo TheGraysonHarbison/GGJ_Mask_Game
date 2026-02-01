@@ -353,7 +353,7 @@ size = Vector2(7, 13)
 size = Vector2(2, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_drum4"]
-size = Vector2(2, 8)
+size = Vector2(24, 24)
 
 [node name="Player" type="CharacterBody2D" unique_id=332226137]
 script = ExtResource("1_1iada")

@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bgf7msbuexurx" path="res://Entities/AttackObjects/Spikes.tscn" id="10_h2fhx"]
 [ext_resource type="PackedScene" uid="uid://de11a78kf1b03" path="res://Entities/CommonObjects/Ladder.tscn" id="11_7fj4n"]
 [ext_resource type="PackedScene" uid="uid://bjfoxcjl0wsyy" path="res://Entities/CommonObjects/Mask.tscn" id="12_yx57t"]
+[ext_resource type="PackedScene" uid="uid://b6ysvjcdcj6vv" path="res://Entities/CommonObjects/DestructibleWall.tscn" id="13_ua6o8"]
 
 [sub_resource type="Animation" id="Animation_7fj4n"]
 length = 0.001
@@ -25,7 +26,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-83, -224)]
+"values": [Vector2(-50, -224)]
 }
 
 [sub_resource type="Animation" id="Animation_yx57t"]
@@ -43,7 +44,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 4, 8),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-83, -224), Vector2(120, -224), Vector2(-83, -224)]
+"values": [Vector2(-50, -224), Vector2(120, -224), Vector2(-50, -224)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ua6o8"]
@@ -64,6 +65,7 @@ script = ExtResource("1_d1qai")
 kill_height = 100
 metadata/_edit_vertical_guides_ = [-674.0]
 metadata/_edit_horizontal_guides_ = [360.0]
+metadata/_edit_lock_ = true
 
 [node name="MainMusic" type="AudioStreamPlayer" parent="." unique_id=1391099675]
 stream = ExtResource("5_h2fhx")
@@ -77,7 +79,7 @@ tile_map_data = PackedByteArray("AAAHAPj/AAABAAMAAAAHAP//AAABAAMAAAAIAPj/AAABAAM
 tile_set = ExtResource("1_uy40e")
 
 [node name="MainCharacter" parent="." unique_id=1895139221 instance=ExtResource("2_orc0r")]
-position = Vector2(-204, -22)
+position = Vector2(-171, -41)
 has_fox_mask = false
 
 [node name="Interactibles" type="Node2D" parent="." unique_id=144084320]
@@ -113,7 +115,7 @@ position = Vector2(111, -128)
 x_tile_width = 1
 
 [node name="Ladder" parent="Interactibles" unique_id=227426683 instance=ExtResource("11_7fj4n")]
-position = Vector2(-111, -128)
+position = Vector2(-76, -128)
 height_tiles = 6
 
 [node name="Ladder2" parent="Interactibles" unique_id=2086296664 instance=ExtResource("11_7fj4n")]
@@ -126,8 +128,14 @@ libraries/ = SubResource("AnimationLibrary_ua6o8")
 script = SubResource("GDScript_7fj4n")
 
 [node name="Ladder3" parent="Interactibles/LadderAnimator" unique_id=1018998387 instance=ExtResource("11_7fj4n")]
-position = Vector2(-83, -224)
+position = Vector2(-50, -224)
 height_tiles = 3
+
+[node name="DestructibleWall" parent="Interactibles" unique_id=1019327353 instance=ExtResource("13_ua6o8")]
+position = Vector2(-159, -128)
+
+[node name="DestructibleWall2" parent="Interactibles" unique_id=1816012915 instance=ExtResource("13_ua6o8")]
+position = Vector2(-171, -16)
 
 [node name="Mask" parent="." unique_id=852790168 instance=ExtResource("12_yx57t")]
 position = Vector2(172, -216)
