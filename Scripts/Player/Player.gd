@@ -118,6 +118,14 @@ func _physics_process(delta: float) -> void:
 	
 	if held_object:
 		held_object.global_transform.origin = global_position - Vector2(0, 16)
+	
+	# Reposition specialized Sensors
+	if sprite.flip_h:
+		colliders.scale.x = -1
+		$MaskNode.scale.x = -1
+	else:
+		colliders.scale.x = 1
+		$MaskNode.scale.x = 1
 
 
 func _process_normal_state(delta: float) -> void:
@@ -163,14 +171,6 @@ func _process_normal_state(delta: float) -> void:
 	elif velocity.x > 0.2:
 		sprite.flip_h = false
 	
-	# Reposition specialized Sensors
-	if sprite.flip_h:
-		colliders.scale.x = -1
-		$MaskNode.scale.x = -1
-	else:
-		colliders.scale.x = 1
-		$MaskNode.scale.x = 1
-	
 	# While in the normal state and an object is grabbable plus no object is held, the player can
 	# grab it.
 	if Input.is_action_just_pressed("p1_use"):
@@ -206,7 +206,7 @@ func _process_air_state(delta: float) -> void:
 		if Input.is_action_just_released("p1_jump"):
 			jump_button_released = true
 			# Cut the upward velocity to end the jump early
-			if velocity.y < 0:
+			if velocity.y < -12:
 				velocity.y *= 0.5
 			is_jumping = false
 		
